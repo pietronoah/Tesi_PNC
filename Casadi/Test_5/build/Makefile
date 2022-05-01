@@ -57,10 +57,10 @@ RM = /Applications/CMake.app/Contents/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi/Test_integrazione_CasADi/V2/Test_5
+CMAKE_SOURCE_DIR = /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V4/Ipopt/Casadi/Test_5
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi/Test_integrazione_CasADi/V2/Test_5/build
+CMAKE_BINARY_DIR = /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V4/Ipopt/Casadi/Test_5/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi/Test_integrazione_CasADi/V2/Test_5/build/CMakeFiles /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi/Test_integrazione_CasADi/V2/Test_5/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V4/Ipopt/Casadi/Test_5/build/CMakeFiles /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V4/Ipopt/Casadi/Test_5/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi/Test_integrazione_CasADi/V2/Test_5/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V4/Ipopt/Casadi/Test_5/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -190,6 +190,30 @@ hs071_nlp.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ipopt_interface.dir/build.make CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.s
 .PHONY : hs071_nlp.cpp.s
 
+pattern_functions.o: pattern_functions.cpp.o
+.PHONY : pattern_functions.o
+
+# target to build an object file
+pattern_functions.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ipopt_interface.dir/build.make CMakeFiles/ipopt_interface.dir/pattern_functions.cpp.o
+.PHONY : pattern_functions.cpp.o
+
+pattern_functions.i: pattern_functions.cpp.i
+.PHONY : pattern_functions.i
+
+# target to preprocess a source file
+pattern_functions.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ipopt_interface.dir/build.make CMakeFiles/ipopt_interface.dir/pattern_functions.cpp.i
+.PHONY : pattern_functions.cpp.i
+
+pattern_functions.s: pattern_functions.cpp.s
+.PHONY : pattern_functions.s
+
+# target to generate assembly for a file
+pattern_functions.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ipopt_interface.dir/build.make CMakeFiles/ipopt_interface.dir/pattern_functions.cpp.s
+.PHONY : pattern_functions.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -206,6 +230,9 @@ help:
 	@echo "... hs071_nlp.o"
 	@echo "... hs071_nlp.i"
 	@echo "... hs071_nlp.s"
+	@echo "... pattern_functions.o"
+	@echo "... pattern_functions.i"
+	@echo "... pattern_functions.s"
 .PHONY : help
 
 

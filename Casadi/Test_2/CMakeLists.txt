@@ -17,7 +17,7 @@ link_directories(${IPOPT_LIBRARY_DIRS})
 
 
 
-add_library(ipopt_interface hs071_nlp.cpp)
+add_library(ipopt_interface hs071_nlp.cpp pattern_functions.cpp pattern_functions.h)
 
 add_executable(${PROJECT_NAME} hs071_main.cpp)
 

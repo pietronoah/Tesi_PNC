@@ -53,10 +53,10 @@ RM = /Applications/CMake.app/Contents/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi/Test_integrazione_CasADi/V2/Test_5
+CMAKE_SOURCE_DIR = /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V4/Ipopt/Casadi/Test_5
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi/Test_integrazione_CasADi/V2/Test_5/build
+CMAKE_BINARY_DIR = /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V4/Ipopt/Casadi/Test_5/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/ipopt_interface.dir/depend.make
@@ -72,28 +72,44 @@ include CMakeFiles/ipopt_interface.dir/flags.make
 CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.o: CMakeFiles/ipopt_interface.dir/flags.make
 CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.o: ../hs071_nlp.cpp
 CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.o: CMakeFiles/ipopt_interface.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi/Test_integrazione_CasADi/V2/Test_5/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.o -MF CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.o.d -o CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.o -c /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi/Test_integrazione_CasADi/V2/Test_5/hs071_nlp.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V4/Ipopt/Casadi/Test_5/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.o -MF CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.o.d -o CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.o -c /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V4/Ipopt/Casadi/Test_5/hs071_nlp.cpp
 
 CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi/Test_integrazione_CasADi/V2/Test_5/hs071_nlp.cpp > CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V4/Ipopt/Casadi/Test_5/hs071_nlp.cpp > CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.i
 
 CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi/Test_integrazione_CasADi/V2/Test_5/hs071_nlp.cpp -o CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V4/Ipopt/Casadi/Test_5/hs071_nlp.cpp -o CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.s
+
+CMakeFiles/ipopt_interface.dir/pattern_functions.cpp.o: CMakeFiles/ipopt_interface.dir/flags.make
+CMakeFiles/ipopt_interface.dir/pattern_functions.cpp.o: ../pattern_functions.cpp
+CMakeFiles/ipopt_interface.dir/pattern_functions.cpp.o: CMakeFiles/ipopt_interface.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V4/Ipopt/Casadi/Test_5/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ipopt_interface.dir/pattern_functions.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ipopt_interface.dir/pattern_functions.cpp.o -MF CMakeFiles/ipopt_interface.dir/pattern_functions.cpp.o.d -o CMakeFiles/ipopt_interface.dir/pattern_functions.cpp.o -c /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V4/Ipopt/Casadi/Test_5/pattern_functions.cpp
+
+CMakeFiles/ipopt_interface.dir/pattern_functions.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ipopt_interface.dir/pattern_functions.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V4/Ipopt/Casadi/Test_5/pattern_functions.cpp > CMakeFiles/ipopt_interface.dir/pattern_functions.cpp.i
+
+CMakeFiles/ipopt_interface.dir/pattern_functions.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ipopt_interface.dir/pattern_functions.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V4/Ipopt/Casadi/Test_5/pattern_functions.cpp -o CMakeFiles/ipopt_interface.dir/pattern_functions.cpp.s
 
 # Object files for target ipopt_interface
 ipopt_interface_OBJECTS = \
-"CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.o"
+"CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.o" \
+"CMakeFiles/ipopt_interface.dir/pattern_functions.cpp.o"
 
 # External object files for target ipopt_interface
 ipopt_interface_EXTERNAL_OBJECTS =
 
 libipopt_interface.a: CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.o
+libipopt_interface.a: CMakeFiles/ipopt_interface.dir/pattern_functions.cpp.o
 libipopt_interface.a: CMakeFiles/ipopt_interface.dir/build.make
 libipopt_interface.a: CMakeFiles/ipopt_interface.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi/Test_integrazione_CasADi/V2/Test_5/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libipopt_interface.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V4/Ipopt/Casadi/Test_5/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libipopt_interface.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/ipopt_interface.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ipopt_interface.dir/link.txt --verbose=$(VERBOSE)
 
@@ -106,6 +122,6 @@ CMakeFiles/ipopt_interface.dir/clean:
 .PHONY : CMakeFiles/ipopt_interface.dir/clean
 
 CMakeFiles/ipopt_interface.dir/depend:
-	cd /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi/Test_integrazione_CasADi/V2/Test_5/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi/Test_integrazione_CasADi/V2/Test_5 /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi/Test_integrazione_CasADi/V2/Test_5 /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi/Test_integrazione_CasADi/V2/Test_5/build /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi/Test_integrazione_CasADi/V2/Test_5/build /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi/Test_integrazione_CasADi/V2/Test_5/build/CMakeFiles/ipopt_interface.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V4/Ipopt/Casadi/Test_5/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V4/Ipopt/Casadi/Test_5 /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V4/Ipopt/Casadi/Test_5 /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V4/Ipopt/Casadi/Test_5/build /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V4/Ipopt/Casadi/Test_5/build /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V4/Ipopt/Casadi/Test_5/build/CMakeFiles/ipopt_interface.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ipopt_interface.dir/depend
 

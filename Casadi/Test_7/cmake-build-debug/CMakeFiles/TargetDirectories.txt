@@ -1,4 +1,0 @@
-/Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V3/Ipopt/Casadi/Test_7/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V3/Ipopt/Casadi/Test_7/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V3/Ipopt/Casadi/Test_7/cmake-build-debug/CMakeFiles/test_7.dir
-/Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/V3/Ipopt/Casadi/Test_7/cmake-build-debug/CMakeFiles/ipopt_interface.dir

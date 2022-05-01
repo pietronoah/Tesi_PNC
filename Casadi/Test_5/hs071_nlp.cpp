@@ -6,6 +6,7 @@
 #include <cassert>
 #include <iostream>
 
+#include "pattern_functions.h"
 #include "CasADi_export/source.c"
 
 // Set delle variabile necessarie ad ipopt nelle chiamate alle funzioni generate da casadi
@@ -35,7 +36,7 @@
 
     // Set vettore contenente il pattern finale della matrice hessiana complessiva
     // Lo imposto come variabile globale per non dover eseguire lo stesso processo di merge ad ogni iterazione
-    std::vector<long long int> final_pattern_hess;
+    // std::vector<long long int> final_pattern_hess;
 
 //------------------------------------------------------------------------------
 
@@ -52,297 +53,9 @@ HS071_NLP::~HS071_NLP()
 {}
 
 
-
-void print_array(double* a, int n) {
-    std::cout << "Array is: " << std::endl;
-    for (int i = 0; i < n; i++) {
-        std::cout << a[i] << " ";
-    }
-    std::cout << std::endl;
-}
-
-void print_array_const(const double* a, int n) {
-    std::cout << "Array is: " << std::endl;
-    for (int i = 0; i < n; i++) {
-        std::cout << a[i] << " ";
-    }
-    std::cout << std::endl;
-}
-
-void print_array_ind(Index* a, int n) {
-    std::cout << "Index array is: " << std::endl;
-    for (int i = 0; i < n; i++) {
-        std::cout << a[i] << " ";
-    }
-    std::cout << std::endl;
-}
-
-void print_array_long(long long int* a, int n) {
-    std::cout << "Array is: " << std::endl;
-    for (int i = 0; i < n; i++) {
-        std::cout << a[i] << " ";
-    }
-    std::cout << std::endl;
-}
-
-void print_array2(std::vector <long long int> const &a) {
-    std::cout << "The vector elements are : ";
-
-    for(int i=0; i < a.size(); i++)
-        std::cout << a.at(i) << ' ';
-    std::cout << std::endl;
-}
+MyClass MyObj;
 
 
-
-// Inserisce i valori all'interno del vettore contente i valori finali a partire dal pattern
-// Usato in funzioni come starting point, dove precedentemente non è richiesta la struttura
-void pattern_value_match(double* a, const long long int* b, double* full) {
-    int n_col = (int) b[1];
-    int index = 0;
-    int x_index = 0;
-    for(int i = 0; i < n_col; i++) {
-        int nze = (int) (b[3+i] - b[2+i]);   // Non zero elements for the i_column
-        for(int j = 0; j < nze; j++) {
-            int row_index = (int) b[2+(n_col+1)+index+j];
-            full[n_col * row_index + i] = a[x_index];
-            x_index++;
-        }
-        index += nze;
-    }
-}
-
-
-// Routine per ricavare la struttura della matrice jacobiana dei constrains
-/*void constrain_jac_structure(Index* a,Index* b, std::vector<long long int> sparsity_pattern) {
-    int n_row = (int) sparsity_pattern[0];
-    int n_col = (int) sparsity_pattern[1];
-
-    int nz_elements = 0; // Numero elementi non zero trovati finora
-    int index = 0; // Number of nz elements that is updated after every column iteration
-
-    for(int k = 0; k < n_row; k++) { // Loop per ogni riga dello jacobiano
-        index = 0;
-        for(int i = 0; i < n_col; i++) {
-            int nze_col = (int) (sparsity_pattern[3+i] - sparsity_pattern[2+i]);   // Non zero elements for the i_column
-            for(int j = 0; j < nze_col; j++) { // Loop per leggere l'indice di riga degli elementi non zero della colonna i
-                auto row_index = (long long int) sparsity_pattern[2+(n_col+1)+index+j];
-                if(row_index == k) {
-                    a[nz_elements] = (int) k;
-                    b[nz_elements] = (int) i;
-                    nz_elements++;
-                }
-            }
-            index += nze_col;
-        }
-    }
-}*/
-
-void constrain_jac_structure(Index* a,Index* b, std::vector<long long int> sparsity_pattern) {
-    int n_col = (int) sparsity_pattern[1];
-    int index = 0;
-    int position = 0;
-
-    for(int i = 0; i < n_col; i++) {
-        int nze = (int) (sparsity_pattern[3+i] - sparsity_pattern[2+i]);
-        for(int j = 0; j < nze; j++) {
-            int row_index = (int) (sparsity_pattern[2+(n_col+1)+index+j]);
-            a[position] = row_index;
-            b[position] = i;
-            position++;
-        }
-        index += nze;
-    }
-}
-
-
-// Function to insert values from a small pattern to a bigger pattern
-/*void pattern_value_match_constrains_jacobian(std::vector<long long int> pattern, double* values, double* final_values, int n_cons) {
-    int position = 0;
-    for(int q = 0; q < n_cons; q++) { // Loop over different constrains
-        int n_col = (int) pattern[1];
-        int index = 0;
-        for(int i = 0; i < n_col; i++) {
-            int nze = (int) (pattern[3+i] - pattern[2+i]);   // Non-zero elements for the i_column pattern
-            for(int j = 0; j < nze; j++) {
-                int row_index = (int) (pattern[2+(n_col+1)+index+j]);
-                if(row_index == q) {
-                    final_values[position] = values[index + j];
-                    position++;
-                }
-            }
-            index += nze;
-        }
-    }
-}*/
-
-
-void pattern_value_match_constrains_jacobian(std::vector<long long int> pattern, double* values, double* final_values, int n_cons) {
-    int position = 0;
-    int n_col = (int) pattern[1];
-    int index = 0;
-    for(int i = 0; i < n_col; i++) {
-        int nze = (int) (pattern[3+i] - pattern[2+i]);   // Non-zero elements for the i_column pattern
-        for(int j = 0; j < nze; j++) {
-            final_values[position] = values[index + j];
-            position++;
-        }
-        index += nze;
-    }
-}
-
-
-
-
-
-
-// Compatta il pattern della matrice hessiana dei constrains
-// Il pattern in uscita è il pattern della matrice quadrata complessiva (non triangolare)
-std::vector<long long int> pattern_merge_constrains(std::vector<long long int> a) {
-    int n_row = (int) a[0];
-    int n_col = (int) a[1];
-    int n_constrains = n_row/n_col;
-
-    // Creo un vettore pattern finale
-    std::vector<long long int> final_pattern;
-    final_pattern.push_back(n_col);
-    final_pattern.push_back(n_col);
-
-    // Vettore contenente gli elementi non zero per colonna
-    std::vector<int> col_ind_vect(n_col+1, 0);
-    final_pattern.insert(final_pattern.end(), col_ind_vect.begin(), col_ind_vect.end()); // Concateno i due vettori contenti le dimensione e il numero di elementi non zero per ogni riga
-
-    int index1 = 0;
-    for(int i = 0; i <n_col; i++) {
-        int nze1 = (int) (a[3+i] - a[2+i]);
-        std::vector<long long int> patt1(a.begin() + (2+n_col+1) + index1,a.begin() + (2+n_col+1) + index1+nze1);
-        index1 += nze1;
-
-        // Riduco gli indici di riga di un fattore n_col fino a farli rientrare nella matrice quadrata n * n
-        // Da riguardare questo range-based for loop
-        for(std::vector<long long int>::iterator j = patt1.begin(); j != patt1.end(); ++j) {
-            while(*j >= n_col) *j -= (long long int) n_col;
-        }
-
-        // Faccio il sort ed elimino i duplicati
-        sort(patt1.begin(), patt1.end());
-        patt1.erase( unique(patt1.begin(),patt1.end()),patt1.end() );
-
-        // Inserisco il pattern della colonna nel pattern finale
-        final_pattern[3+i] = (long long int) (final_pattern[2+i] + patt1.size());
-        final_pattern.insert(final_pattern.end(), patt1.begin(), patt1.end()); // Concateno gli indici di riga con il pattern
-    }
-    return final_pattern;
-}
-
-
-
-// Routine per il merge di due pattern non triangolari per ottenerne uno triangolare
-// Utilizzata nel merge di due mattern nella funzione per ricavare l'hessiano complessivo
-std::vector<long long int> pattern_merge(std::vector<long long int> a, std::vector<long long int> b) {
-    int n_row = (int) a[0];
-    int n_col = (int) a[1];
-
-    std::vector<long long int> final_pattern;
-    final_pattern.push_back(n_row);
-    final_pattern.push_back(n_col);
-    std::vector<int> col_ind_vect(n_col+1, 0);
-    final_pattern.insert(final_pattern.end(), col_ind_vect.begin(), col_ind_vect.end()); // Concateno i due vettori
-
-    int index1 = 0;
-    int index2 = 0;
-    for(int i = 0; i <n_col; i++) {
-        int nze1 = (int) (a[3+i] - a[2+i]);
-        std::vector<long long int> patt1(a.begin() + (2+n_col+1) + index1,a.begin() + (2+n_col+1) + index1+nze1);
-        index1 += nze1;
-
-        int nze2 = (int) (b[3+i] - b[2+i]);
-        std::vector<long long int> patt2(b.begin() + (2+n_col+1) + index2,b.begin() + (2+n_col+1) + index2+nze2);
-        index2 += nze2;
-
-        patt1.insert(patt1.end(), patt2.begin(), patt2.end());
-
-        sort(patt1.begin(), patt1.end());
-        patt1.erase( unique(patt1.begin(),patt1.end()),patt1.end() ); // Faccio il sort ed elimino i duplicati
-
-        // Loop to select only the lower part of the matrix
-        patt1.erase(std::remove_if(
-                patt1.begin(), patt1.end(),
-                [&i](const int& x) {
-                    return x < i; // put your condition here
-                }), patt1.end());
-
-        final_pattern[3+i] = (long long int) (final_pattern[2+i] + patt1.size());
-        final_pattern.insert(final_pattern.end(), patt1.begin(), patt1.end()); // Concateno gli indici di riga con il pattern
-    }
-    return final_pattern;
-}
-
-// FUnzione per riempire i vettori iRow e jCol secondo il metodo di storage CCS
-void final_hess_structure(Index* a,Index* b, std::vector<long long int> sparsity_pattern) {
-    int n_col = (int) sparsity_pattern[1];
-    int index = 0;
-    int position = 0;
-
-    for(int i = 0; i < n_col; i++) {
-        int nze = (int) (sparsity_pattern[3+i] - sparsity_pattern[2+i]);
-        for(int j = 0; j < nze; j++) {
-            int row_index = (int) (sparsity_pattern[2+(n_col+1)+index+j]);
-            if(i <= row_index) {
-                a[position] = row_index;
-                b[position] = i;
-                position++;
-            }
-        }
-        index += nze;
-    }
-}
-
-
-// Funzione per riempire il vettore di valori finali dell'hessiano
-// Deve restituire solo i valori diversi da 0 (contenuti nel pattern) e appartenenti al traingolo basso della matrice
-void pattern_value_match_hessian(std::vector<long long int> short_patt, double* short_value, std::vector<long long int> final_patt, double* final_value, int n_cons, const Number* multiplier) {
-    for(int q = 0; q < n_cons; q++) { // Loop over different constrains
-        int n_col = (int) short_patt[1];
-
-        int position = 0;
-        int index_short = 0;
-
-        for(int i = 0; i < n_col; i++) {
-            int nze_short = (int) (short_patt[3+i] - short_patt[2+i]);   // Non-zero elements for the i_column short pattern
-            int nze_long = (int) (final_patt[3+i] - final_patt[2+i]);   // Non-zero elements for the i_column long pattern
-            //std::cout << "Position: " << position << std::endl;
-            for(int j = 0; j < nze_short; j++) {
-                int row_index_short = (int) (short_patt[2+(n_col+1)+index_short+j]);
-                for(int l = 0; l < nze_long; l++) {
-                    if(i > (row_index_short-n_col*q)  ||  row_index_short < (n_col*q)  ||  row_index_short >= (n_col*(q+1))) {
-                        break;
-                    }
-                    // Verifico che il valore in analisi sia nel range considerato (varia nel caso della matrice dei constrains in cui ho più righe che colonne)
-                    // Verifico si trovi nella parte bassa triangolare della matrice
-                    // Se il valore del pattern piccolo non corrisponde a quello del pattern finale, incremento la sua posizione e verifico la congruenza con l'elemento successivo
-                    if(i <= (row_index_short-n_col*q)  &&  row_index_short >= (n_col*q)  &&  row_index_short < (n_col*(q+1))  &&  (row_index_short - n_col*q) == final_patt[2+n_col+1 + position]) {
-                        final_value[position] += multiplier[q] *  short_value[index_short + j];
-                        //std::cout << "Row index: " << row_index_short << ", Position: " << position << ", Short value: " << short_value[index_short + j] << ", multiplier: " << multiplier[q] << ", final value: " << final_value[position] << std::endl;
-                        position++;
-                        break;
-                    }
-                    //std::cout << "Row index: " << row_index_short << std::endl;
-                    if(i <= (row_index_short-n_col*q)  &&  row_index_short >= (n_col*q)  &&  row_index_short < (n_col*(q+1))) {
-                        position++;
-                    }
-                }
-            }
-            position = (int) final_patt[3+i];
-            index_short += nze_short;
-        }
-    }
-}
-
-
-
-
-\
 // returns the size of the problem
 bool HS071_NLP::get_nlp_info(Index& n, Index& m, Index& nnz_jac_g,
                              Index& nnz_h_lag, IndexStyleEnum& index_style)
@@ -395,19 +108,19 @@ bool HS071_NLP::get_bounds_info(Index n, Number* x_l, Number* x_u,
 
   const long long int* sparsity_pattern_x_l = x_l_casadi_sparsity_out(0);
   auto* x_l_full = new double[n]();
-  pattern_value_match(x_l_vector, sparsity_pattern_x_l, x_l_full);
+  MyObj.pattern_value_match(x_l_vector, sparsity_pattern_x_l, x_l_full);
 
   const long long int* sparsity_pattern_x_u = x_u_casadi_sparsity_out(0);
   auto* x_u_full = new double[n]();
-  pattern_value_match(x_u_vector, sparsity_pattern_x_u, x_u_full);
+  MyObj.pattern_value_match(x_u_vector, sparsity_pattern_x_u, x_u_full);
 
   const long long int* sparsity_pattern_g_l = g_l_casadi_sparsity_out(0);
   auto* g_l_full = new double[m]();
-  pattern_value_match(g_l_vector, sparsity_pattern_g_l, g_l_full);
+  MyObj.pattern_value_match(g_l_vector, sparsity_pattern_g_l, g_l_full);
 
   const long long int* sparsity_pattern_g_u = g_u_casadi_sparsity_out(0);
   auto* g_u_full = new double[m]();
-  pattern_value_match(g_u_vector, sparsity_pattern_g_u, g_u_full);
+  MyObj.pattern_value_match(g_u_vector, sparsity_pattern_g_u, g_u_full);
 
   // the variables have lower bounds of 1
   for (Index i=0; i<n; i++) {
@@ -445,7 +158,7 @@ bool HS071_NLP::get_starting_point(Index n, bool init_x, Number* x,
 
   const long long int* sparsity_pattern_x_start_point = x_start_point_sparsity_out(0);
   auto* x_start_point_full = new double[m]();
-  pattern_value_match(x_start_point_vector, sparsity_pattern_x_start_point, x_start_point_full);
+  MyObj.pattern_value_match(x_start_point_vector, sparsity_pattern_x_start_point, x_start_point_full);
 
   for (Index i=0; i<n; i++) {
     x[i] = x_start_point_full[i];
@@ -481,7 +194,7 @@ bool HS071_NLP::eval_grad_f(Index n, const Number* x, bool new_x, Number* grad_f
 
   obj_f_grad(&x, &grad_f1, iw, w, mem);
 
-  pattern_value_match(grad_f1, sparsity_pattern, grad_f);
+  MyObj.pattern_value_match(grad_f1, sparsity_pattern, grad_f);
 
   return true;
 }
@@ -505,7 +218,7 @@ bool HS071_NLP::eval_g(Index n, const Number* x, bool new_x, Index m, Number* g)
 
   con_g(&x, &g1, iw, w, mem);
 
-  pattern_value_match(g1, sparsity_pattern, g);
+  MyObj.pattern_value_match(g1, sparsity_pattern, g);
 
   return true;
 }
@@ -520,7 +233,7 @@ bool HS071_NLP::eval_jac_g(Index n, const Number* x, bool new_x,
 
       const long long int* sparsity_pattern = con_g_jac_sparsity_out(0);
       std::vector<long long int> sparsity_pattern1(sparsity_pattern, sparsity_pattern + (2 + sparsity_pattern[1] + 1 + nele_jac));
-      constrain_jac_structure(iRow,jCol,sparsity_pattern1);
+      MyObj.constrain_jac_structure(iRow,jCol,sparsity_pattern1);
 
   }
   else {
@@ -533,7 +246,7 @@ bool HS071_NLP::eval_jac_g(Index n, const Number* x, bool new_x,
 
     std::vector<long long int> sparsity_pattern_g_jac(sparsity_pattern, sparsity_pattern + (2 + sparsity_pattern[1] + 1 + nele_jac));
 
-    pattern_value_match_constrains_jacobian(sparsity_pattern_g_jac, values1, values, m);
+    MyObj.pattern_value_match_constrains_jacobian(sparsity_pattern_g_jac, values1, values, m);
   }
 
   return true;
@@ -556,19 +269,24 @@ bool HS071_NLP::eval_h(Index n, const Number* x, bool new_x,
     std::vector<long long int> con_g_hes_sparsity_vect(con_g_hes_sparsity, con_g_hes_sparsity + (2+n+1+n*n*m));
 
     // Compatto il pattern della matrice dei constrains
-    std::vector<long long int> merge_hes_con = pattern_merge_constrains(con_g_hes_sparsity_vect);
-      std::cout << "Constrain pattern is: ";
-      print_array2(merge_hes_con);
+    std::vector<long long int> merge_hes_con = MyObj.pattern_merge_constrains(con_g_hes_sparsity_vect);
+      //std::cout << "Constrain pattern is: ";
+      //print_array2(merge_hes_con);
 
     // Merge dei pattern delle matrici hessiane già compattate
-    final_pattern_hess = pattern_merge(obj_f_hes_sparsity_vect,merge_hes_con);
-      std::cout << "Final pattern is: ";
-      print_array2(final_pattern_hess);
+    MyObj.final_pattern_hess = MyObj.pattern_merge(obj_f_hes_sparsity_vect,merge_hes_con);
+      //std::cout << "Final pattern is: ";
+      //print_array2(final_pattern_hess);
 
     // Nuova funzione per immagazzinare l'hessiano secondo la regola CCS
     // Risulta molto comodo per eseguire il match tra pattern e values durante la fase di valutazione
-    final_hess_structure(iRow,jCol,final_pattern_hess);
-    Index idx = final_pattern_hess[2+n]; // RIGUARDARE QUI!!
+    MyObj.final_hess_structure(iRow,jCol,MyObj.final_pattern_hess);
+
+    // Creo la mappatura del vettore delle values dei constrains
+    MyObj.constrain_hess_map(con_g_hes_sparsity_vect, MyObj.final_pattern_hess, MyObj.cons_hess_map, MyObj.cons_vect);
+    MyObj.print_array2(MyObj.cons_hess_map);
+
+    Index idx = MyObj.final_pattern_hess[2+n]; // RIGUARDARE QUI!!
 
     //std::cout << "Idx is: " << idx << std::endl;
 
@@ -599,28 +317,22 @@ bool HS071_NLP::eval_h(Index n, const Number* x, bool new_x,
       */
 
 
-    long long int nze_final = final_pattern_hess[2+n]; // Number of non-zero elements in the final pattern
+    long long int nze_final = MyObj.final_pattern_hess[2+n]; // Number of non-zero elements in the final pattern
     auto* final_values = new double[nze_final]();
 
     // Inserisco i valori delle singole matrici all'interno del vettore di valori finale
-    pattern_value_match_hessian(sparsity_pattern_f_hes,values1,final_pattern_hess,final_values,1,&obj_factor);
-    pattern_value_match_hessian(sparsity_pattern_g_hes,values2,final_pattern_hess,final_values,n_constrain,lambda);
+    MyObj.pattern_value_match_hessian(sparsity_pattern_f_hes,values1,MyObj.final_pattern_hess,final_values,1,&obj_factor);
+    //MyObj.pattern_value_match_hessian(sparsity_pattern_g_hes,values2,MyObj.final_pattern_hess,final_values,n_constrain,lambda);
+
+    MyObj.pattern_value_match_hessian_map(MyObj.cons_hess_map, MyObj.cons_vect, values2, final_values, lambda);
 
     for (int i = 0; i < nele_hess; i++) {
         values[i] = final_values[i];
     }
 
-    std::cout << "obj_factor: " << obj_factor << ", lambda: " << lambda[0] << ", " << lambda[1] << std::endl;
-    print_array_const(x,4);
-    print_array(values,10);
-
-    /*int final_index = 0;
-    for (int i = 0; i < (n*(n+1)/2); i++) {
-      if (final_values[i] != 0) {
-        values[final_index] = final_values[i];
-        final_index++;
-      }
-    }*/
+    //std::cout << "obj_factor: " << obj_factor << ", lambda: " << lambda[0] << ", " << lambda[1] << std::endl;
+    //print_array_const(x,4);
+    //print_array(values,10);
   }
 
   return true;
