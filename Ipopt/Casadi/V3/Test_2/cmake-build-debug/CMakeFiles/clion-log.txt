@@ -1,0 +1,6 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi/Test_integrazione_CasADi/V3/Test_2
+ipopt binary path is: /opt/homebrew/Cellar/ipopt/3.14.4/lib
+ipopt include path is: /opt/homebrew/Cellar/ipopt/3.14.4/include/coin-or
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi/Test_integrazione_CasADi/V3/Test_2/cmake-build-debug

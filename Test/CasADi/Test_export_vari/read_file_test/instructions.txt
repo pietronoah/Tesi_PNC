@@ -1,0 +1,6 @@
+Example of the text file syntax, with line number
+
+1. Number_of_variables
+2. Name__var1 Name__var2 ... 
+3. Funtion_name
+4. Function_core

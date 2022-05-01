@@ -1,0 +1,37 @@
+
+cmake_minimum_required(VERSION 3.22.0)
+project(ipopt_example_5)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O3 -pipe -DNDEBUG -Wparentheses -Wreturn-type -Wcast-qual -Wall -Wpointer-arith -Wwrite-strings -Wconversion -Wno-unknown-pragmas -Wno-long-long   -DIPOPT_BUILD")
+# set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
+
+set(IPOPT_LIBRARY_DIRS /opt/homebrew/Cellar/ipopt/3.14.4/lib)
+set(IPOPT_INCLUDE_DIRS /opt/homebrew/Cellar/ipopt/3.14.4/include/coin-or)
+
+message("ipopt binary path is: " ${IPOPT_LIBRARY_DIRS} )
+message("ipopt include path is: " ${IPOPT_INCLUDE_DIRS} )
+
+include_directories(${IPOPT_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/include)
+link_directories(${IPOPT_LIBRARY_DIRS})
+
+# Qui aggiungo il comando per includere anche la subdir che include la libreria Text creata da me
+add_subdirectory(Text)
+
+add_library(ipopt_interface hs071_nlp.cpp)
+
+add_executable(${PROJECT_NAME} hs071_main.cpp)
+
+
+target_include_directories(${PROJECT_NAME} PUBLIC
+                          "${PROJECT_BINARY_DIR}"
+                          "${PROJECT_SOURCE_DIR}/Text"
+                          )
+
+target_link_libraries(${PROJECT_NAME} ipopt_interface)
+target_link_libraries(${PROJECT_NAME} ipopt)
+target_link_libraries(${PROJECT_NAME} libtext)
+
+
+
+ 
