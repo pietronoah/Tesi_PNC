@@ -1,4 +1,0 @@
-/Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi+Jinja+Autodiff/Forward_mode/Test_5/build/CMakeFiles/ipopt_interface.dir
-/Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi+Jinja+Autodiff/Forward_mode/Test_5/build/CMakeFiles/test_5.dir
-/Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi+Jinja+Autodiff/Forward_mode/Test_5/build/CMakeFiles/edit_cache.dir
-/Users/pietronoahcrestaz/Documents/Pietro/UniTn/Tesi/Code/Ipopt/Casadi+Jinja+Autodiff/Forward_mode/Test_5/build/CMakeFiles/rebuild_cache.dir

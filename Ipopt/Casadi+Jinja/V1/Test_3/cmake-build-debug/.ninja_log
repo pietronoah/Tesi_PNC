@@ -1,5 +1,0 @@
-# ninja log v5
-0	487	1646299781171078169	CMakeFiles/test_3.dir/test_3_main.cpp.o	85eaa9a63cc8276f
-0	511	1646299781196055836	CMakeFiles/ipopt_interface.dir/test_3_nlp.cpp.o	ac0e1e9349eaeea5
-513	531	1646299781217569000	libipopt_interface.a	8bdf4bc51fc3d385
-531	564	1646299781250890497	test_3	e142c5105cc5cb2f
