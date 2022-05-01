@@ -1,0 +1,8 @@
+# ninja log v5
+1	497	1650815836045264609	CMakeFiles/First_test_with_casadi_implementation.dir/hs071_main.cpp.o	ef121ce510c6b7d4
+1	805	1650815836353353210	CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.o	329393d4fbd5bd8
+807	825	1650815836376249000	libipopt_interface.a	1421afd8d0a55935
+825	864	1650815836414218143	First_test_with_casadi_implementation	282ea5dae24921f1
+2	801	1650869908195553705	CMakeFiles/ipopt_interface.dir/hs071_nlp.cpp.o	329393d4fbd5bd8
+806	881	1650869908278408000	libipopt_interface.a	1421afd8d0a55935
+881	966	1650869908362958179	First_test_with_casadi_implementation	282ea5dae24921f1
