@@ -1,0 +1,4 @@
+/Users/pietronoahcrestaz/Documents/Pietro/Test/Tesi_test/Code/casadi/Test_4/build/CMakeFiles/ipopt_interface.dir
+/Users/pietronoahcrestaz/Documents/Pietro/Test/Tesi_test/Code/casadi/Test_4/build/CMakeFiles/First_test_with_casadi_implementation.dir
+/Users/pietronoahcrestaz/Documents/Pietro/Test/Tesi_test/Code/casadi/Test_4/build/CMakeFiles/edit_cache.dir
+/Users/pietronoahcrestaz/Documents/Pietro/Test/Tesi_test/Code/casadi/Test_4/build/CMakeFiles/rebuild_cache.dir
